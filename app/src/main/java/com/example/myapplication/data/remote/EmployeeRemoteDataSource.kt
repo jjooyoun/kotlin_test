@@ -1,10 +1,10 @@
 package com.example.myapplication.data.remote
 
-import androidx.lifecycle.LiveData
 import com.example.myapplication.data.EmployeeDataSource
 import com.example.myapplication.data.local.Employee
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 
 class EmployeeRemoteDataSource internal constructor(
     private val employeeAPI: EmployeeAPI,
@@ -18,7 +18,7 @@ class EmployeeRemoteDataSource internal constructor(
         TODO("Not yet implemented")
     }
 
-    override fun observeAllEmployee(): LiveData<List<Employee>> {
+    override fun observeAllEmployee(): Flow<List<Employee>> {
         TODO("Not yet implemented")
     }
 }

@@ -1,7 +1,7 @@
 package com.example.myapplication.data
 
-import androidx.lifecycle.LiveData
 import com.example.myapplication.data.local.Employee
+import kotlinx.coroutines.flow.Flow
 
 class DefaultEmployeeRepository(
     private val employeeLocalDataSource: EmployeeDataSource,
@@ -15,7 +15,7 @@ class DefaultEmployeeRepository(
         TODO("Not yet implemented")
     }
 
-    override fun observeAllEmployee(): LiveData<List<Employee>> {
+    override fun observeAllEmployee(): Flow<List<Employee>> {
         TODO("Not yet implemented")
     }
 }

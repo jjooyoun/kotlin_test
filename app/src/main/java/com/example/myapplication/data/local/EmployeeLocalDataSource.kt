@@ -1,9 +1,9 @@
 package com.example.myapplication.data.local
 
-import androidx.lifecycle.LiveData
 import com.example.myapplication.data.EmployeeDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 
 class EmployeeLocalDataSource internal constructor(
     private val employeeDao: EmployeeDao,
@@ -17,7 +17,7 @@ class EmployeeLocalDataSource internal constructor(
         TODO("Not yet implemented")
     }
 
-    override fun observeAllEmployee(): LiveData<List<Employee>> {
+    override fun observeAllEmployee(): Flow<List<Employee>> {
         TODO("Not yet implemented")
     }
 }

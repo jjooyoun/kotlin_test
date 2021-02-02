@@ -1,7 +1,7 @@
 package com.example.myapplication.data
 
-import androidx.lifecycle.LiveData
 import com.example.myapplication.data.local.Employee
+import kotlinx.coroutines.flow.Flow
 
 interface EmployeeRepository {
 
@@ -9,5 +9,5 @@ interface EmployeeRepository {
 
     suspend fun deleteEmployee(employee: Employee)
 
-    fun observeAllEmployee(): LiveData<List<Employee>>
+    fun observeAllEmployee(): Flow<List<Employee>>
 }

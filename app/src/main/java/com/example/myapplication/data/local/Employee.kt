@@ -1,9 +1,12 @@
 package com.example.myapplication.data.local
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "employees")
+@Parcelize
 data class Employee(
     @PrimaryKey(autoGenerate = true) val id: Int,
     var uuid: String,
@@ -15,4 +18,4 @@ data class Employee(
     var photo_url_large: String,
     var team: String,
     var employee_type: String
-)
+) : Parcelable

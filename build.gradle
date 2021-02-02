@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.kotlinVersion = "1.4.21"
-    ext.hiltVersion = "2.29-alpha"
+    ext.hiltVersion = "2.31.2-alpha"
     ext.navigationVersion = "2.3.2"
     repositories {
         google()
@@ -35,7 +35,8 @@ ext {
     targetSdkVersion = 30
     androidxAppcompatVersion = "1.2.0"
     androidxConstraintlayoutVersion = "2.0.4"
-    androidxHiltVersion = "1.0.0-alpha02"
+    archLifecycleVersion = "2.2.0"
+    androidxHiltVersion = "1.0.0-alpha03"
     retrofitVersion = "2.9.0"
     okhttpInterceptVersion = "4.10.0-RC1"
     roomVersion = "2.2.6"
