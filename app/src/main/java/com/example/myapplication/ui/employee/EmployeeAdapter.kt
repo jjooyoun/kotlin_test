@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.data.local.Employee
 import com.example.myapplication.databinding.ItemEmployeeBinding
 
-class EmployeeAdapter : ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder>(DiffCallback()) {
+class EmployeeAdapter(private val listener: OnItemClickListener) :
+    ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
         val binding =
@@ -21,8 +22,20 @@ class EmployeeAdapter : ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder
         holder.bind(currentItem)
     }
 
-    class EmployeeViewHolder(private val binding: ItemEmployeeBinding) :
+    inner class EmployeeViewHolder(private val binding: ItemEmployeeBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val employee = getItem(position)
+                        listener.onItemClick(employee)
+                    }
+                }
+            }
+        }
 
         fun bind(employee: Employee) {
             binding.apply {
@@ -31,6 +44,10 @@ class EmployeeAdapter : ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder
                 team.text = employee.team
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(employee: Employee)
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Employee>() {

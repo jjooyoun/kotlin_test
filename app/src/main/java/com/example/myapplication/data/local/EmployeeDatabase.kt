@@ -26,7 +26,6 @@ abstract class EmployeeDatabase : RoomDatabase() {
             super.onCreate(db)
 
             applicationScope.launch {
-                // TODO Something
             }
         }
     }
