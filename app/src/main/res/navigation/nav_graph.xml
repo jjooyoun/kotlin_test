@@ -32,4 +32,11 @@
             app:argType="com.example.myapplication.data.local.Employee"
             app:nullable="true" />
     </fragment>
+    <dialog
+        android:id="@+id/customDialogFragment"
+        android:name="com.example.myapplication.ui.dialog.CustomDialogFragment"
+        android:label="CustomDialogFragment" />
+    <action
+        android:id="@+id/action_global_customDialogFragment"
+        app:destination="@id/customDialogFragment" />
 </navigation>

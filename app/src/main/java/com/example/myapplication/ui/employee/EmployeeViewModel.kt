@@ -32,5 +32,6 @@ class EmployeeViewModel @AssistedInject constructor(
 
     sealed class EmployeeEvent {
         data class TestMessage(val employee: Employee) : EmployeeEvent()
+        object TestNavigateMessage : EmployeeEvent()
     }
 }

@@ -17,4 +17,5 @@ class DetailViewModel @AssistedInject constructor(
             field = value
             state.set("full_name", value)
         }
+    var test = state.getLiveData("test", "")
 }

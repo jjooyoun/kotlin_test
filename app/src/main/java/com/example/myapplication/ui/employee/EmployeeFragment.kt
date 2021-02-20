@@ -2,8 +2,11 @@ package com.example.myapplication.ui.employee
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +14,7 @@ import com.example.myapplication.R
 import com.example.myapplication.data.local.Employee
 import com.example.myapplication.databinding.FragmentEmployeeBinding
 import com.example.myapplication.ui.base.BaseFragment
+import com.example.myapplication.util.exhaustive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -60,9 +64,18 @@ class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
             viewModel.employeeEvent.collect { event ->
                 when (event) {
                     is EmployeeViewModel.EmployeeEvent.TestMessage -> {
-                        // TODO 
+                        // TODO
+                        setFragmentResult(
+                            "",
+                            bundleOf()
+                        )
+                        findNavController().popBackStack()
                     }
-                }
+                    EmployeeViewModel.EmployeeEvent.TestNavigateMessage -> {
+                        val action = EmployeeFragmentDirections.actionGlobalCustomDialogFragment()
+                        findNavController().navigate(action)
+                    }
+                }.exhaustive
             }
         }
     }
