@@ -43,4 +43,9 @@ ext {
     roomVersion = "2.2.6"
     coroutinesVersion = "1.3.9"
     dataStoreVersion = "1.0.0-alpha06"
+    junitVersion = "4.13.1"
+    junitExtensionVersion = "1.1.2"
+    EspressoVersion ="3.3.0"
+    googleTruthVersion = "1.0.1"
+    coreTestingVersion = "2.1.0"
 }

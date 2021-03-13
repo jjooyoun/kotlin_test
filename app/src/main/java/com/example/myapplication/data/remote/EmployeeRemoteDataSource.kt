@@ -5,8 +5,9 @@ import com.example.myapplication.data.local.Employee
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class EmployeeRemoteDataSource internal constructor(
+class EmployeeRemoteDataSource @Inject constructor(
     private val employeeAPI: EmployeeAPI,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : EmployeeDataSource {

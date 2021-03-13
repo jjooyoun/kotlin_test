@@ -4,8 +4,9 @@ import com.example.myapplication.data.EmployeeDataSource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class EmployeeLocalDataSource internal constructor(
+class EmployeeLocalDataSource @Inject constructor(
     private val employeeDao: EmployeeDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : EmployeeDataSource {

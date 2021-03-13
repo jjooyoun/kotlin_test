@@ -2,8 +2,9 @@ package com.example.myapplication.data
 
 import com.example.myapplication.data.local.Employee
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class DefaultEmployeeRepository(
+class DefaultEmployeeRepository @Inject constructor(
     private val employeeLocalDataSource: EmployeeDataSource,
     private val employeeRemoteDataSource: EmployeeDataSource,
 ) : EmployeeRepository {

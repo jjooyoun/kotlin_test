@@ -4,6 +4,8 @@ import androidx.lifecycle.*
 import com.example.myapplication.data.EmployeeRepository
 import com.example.myapplication.data.PreferencesManager
 import com.example.myapplication.data.local.Employee
+import com.example.myapplication.util.Event
+import com.example.myapplication.util.Resource
 import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -28,6 +30,9 @@ class EmployeeViewModel @AssistedInject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
+    private val _test = MutableLiveData<Event<Resource<Boolean>>>()
+    val test: LiveData<Event<Resource<Boolean>>> = _test
+    
     fun onEmployeeSelected(employee: Employee) {}
 
     sealed class EmployeeEvent {
