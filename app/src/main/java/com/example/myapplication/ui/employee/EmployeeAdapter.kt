@@ -5,11 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.example.myapplication.data.local.Employee
 import com.example.myapplication.databinding.ItemEmployeeBinding
+import javax.inject.Inject
 
-class EmployeeAdapter(private val listener: OnItemClickListener) :
-    ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder>(DiffCallback()) {
+class EmployeeAdapter(
+    private val glide: RequestManager,
+    private val listener: OnItemClickListener
+) : ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
         val binding =
@@ -34,6 +38,7 @@ class EmployeeAdapter(private val listener: OnItemClickListener) :
                         listener.onItemClick(employee)
                     }
                 }
+                // glide.load()
             }
         }
 

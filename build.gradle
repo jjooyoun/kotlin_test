@@ -2,7 +2,7 @@
 buildscript {
     ext.kotlinVersion = "1.4.21"
     ext.hiltVersion = "2.31.2-alpha"
-    ext.navigationVersion = "2.3.3"
+    ext.navigationVersion = "2.3.4"
     repositories {
         google()
         jcenter()
@@ -43,9 +43,13 @@ ext {
     roomVersion = "2.2.6"
     coroutinesVersion = "1.3.9"
     dataStoreVersion = "1.0.0-alpha06"
+    glideVersion = "4.11.0"
     junitVersion = "4.13.1"
     junitExtensionVersion = "1.1.2"
     EspressoVersion ="3.3.0"
     googleTruthVersion = "1.0.1"
     coreTestingVersion = "2.1.0"
+    kotilnCoroutineTestingVersion = "1.2.1"
+    kotilnFragmentTestingVersion = "1.3.1"
+    espressContribVersion = "3.3.0"
 }

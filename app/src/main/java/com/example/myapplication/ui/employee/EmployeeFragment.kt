@@ -2,6 +2,7 @@ package com.example.myapplication.ui.employee
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.RequestManager
 import com.example.myapplication.R
 import com.example.myapplication.data.local.Employee
 import com.example.myapplication.databinding.FragmentEmployeeBinding
@@ -17,10 +19,14 @@ import com.example.myapplication.ui.base.BaseFragment
 import com.example.myapplication.util.exhaustive
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
     EmployeeAdapter.OnItemClickListener {
+
+    @Inject
+    lateinit var glide : RequestManager
 
     private val viewModel: EmployeeViewModel by viewModels()
 
@@ -29,7 +35,7 @@ class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
 
         val binding = FragmentEmployeeBinding.bind(view)
 
-        val employeeAdapter = EmployeeAdapter(this)
+        val employeeAdapter = EmployeeAdapter(glide, this)
 
         binding.apply {
             recyclerEmployee.apply {
@@ -78,6 +84,13 @@ class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
                 }.exhaustive
             }
         }
+
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().popBackStack()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(callback)
     }
 
     override fun onItemClick(employee: Employee) {
