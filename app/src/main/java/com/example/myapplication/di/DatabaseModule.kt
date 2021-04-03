@@ -6,7 +6,6 @@ import com.example.myapplication.Constants.DATABASE_NAME
 import com.example.myapplication.data.local.EmployeeDao
 import com.example.myapplication.data.local.EmployeeDatabase
 import com.example.myapplication.data.DefaultEmployeeRepository
-import com.example.myapplication.data.EmployeeDataSource
 import com.example.myapplication.data.EmployeeRepository
 import com.example.myapplication.data.local.EmployeeLocalDataSource
 import com.example.myapplication.data.remote.EmployeeAPI
@@ -16,42 +15,27 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
-    @Qualifier
-    @Retention(AnnotationRetention.RUNTIME)
-    annotation class RemoteEmployeeDataSource
-
-    @Qualifier
-    @Retention(AnnotationRetention.RUNTIME)
-    annotation class LocalEmployeeDataSource
-
     @Singleton
-    @RemoteEmployeeDataSource
     @Provides
     fun provideEmployeeRemoteDataSource(
         employeeAPI: EmployeeAPI
-    ): EmployeeDataSource {
-        return EmployeeRemoteDataSource(
-            employeeAPI
-        )
-    }
+    ) = EmployeeRemoteDataSource(
+        employeeAPI
+    )
 
     @Singleton
-    @LocalEmployeeDataSource
     @Provides
     fun provideEmployeeLocalDataSource(
         employeeDao: EmployeeDao
-    ): EmployeeDataSource {
-        return EmployeeLocalDataSource(
-            employeeDao
-        )
-    }
+    ) = EmployeeLocalDataSource(
+        employeeDao
+    )
 
     @Singleton
     @Provides
@@ -72,8 +56,8 @@ object DatabaseModule {
     @Singleton
     @Provides
     fun provideDefaultEmployeeRepository(
-        @LocalEmployeeDataSource employeeLocalDataSource: EmployeeDataSource,
-        @RemoteEmployeeDataSource employeeRemoteDataSource: EmployeeDataSource
+        employeeLocalDataSource: EmployeeLocalDataSource,
+        employeeRemoteDataSource: EmployeeRemoteDataSource
     ) = DefaultEmployeeRepository(
         employeeLocalDataSource,
         employeeRemoteDataSource

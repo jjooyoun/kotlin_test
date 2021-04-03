@@ -6,12 +6,14 @@ import com.example.myapplication.data.PreferencesManager
 import com.example.myapplication.data.local.Employee
 import com.example.myapplication.util.Event
 import com.example.myapplication.util.Resource
-import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class EmployeeViewModel @AssistedInject constructor(
+@HiltViewModel
+class EmployeeViewModel @Inject constructor(
     private val employeeRepository: EmployeeRepository,
     private val preferencesManager: PreferencesManager
 ) : ViewModel() {
@@ -32,7 +34,7 @@ class EmployeeViewModel @AssistedInject constructor(
 
     private val _test = MutableLiveData<Event<Resource<Boolean>>>()
     val test: LiveData<Event<Resource<Boolean>>> = _test
-    
+
     fun onEmployeeSelected(employee: Employee) {}
 
     sealed class EmployeeEvent {

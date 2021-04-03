@@ -1,6 +1,7 @@
 package com.example.myapplication.data
 
 import com.example.myapplication.data.local.Employee
+import com.example.myapplication.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface EmployeeRepository {
@@ -9,5 +10,5 @@ interface EmployeeRepository {
 
     suspend fun deleteEmployee(employee: Employee)
 
-    fun observeAllEmployee(): Flow<List<Employee>>
+    fun observeAllEmployee(): Flow<Resource<List<Employee>>>
 }

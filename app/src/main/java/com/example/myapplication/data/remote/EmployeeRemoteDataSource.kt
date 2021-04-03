@@ -1,25 +1,16 @@
 package com.example.myapplication.data.remote
 
-import com.example.myapplication.data.EmployeeDataSource
-import com.example.myapplication.data.local.Employee
+import com.example.myapplication.data.remote.response.EmployeeResponse
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
 import javax.inject.Inject
 
 class EmployeeRemoteDataSource @Inject constructor(
     private val employeeAPI: EmployeeAPI,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : EmployeeDataSource {
-    override suspend fun insertEmployee(employee: Employee) {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun deleteEmployee(employee: Employee) {
-        TODO("Not yet implemented")
-    }
-
-    override fun observeAllEmployee(): Flow<List<Employee>> {
-        TODO("Not yet implemented")
+) {
+    suspend fun getEmployees(): Response<EmployeeResponse> {
+        return employeeAPI.getEmployees()
     }
 }

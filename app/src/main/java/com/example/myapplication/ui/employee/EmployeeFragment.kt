@@ -26,7 +26,7 @@ class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
     EmployeeAdapter.OnItemClickListener {
 
     @Inject
-    lateinit var glide : RequestManager
+    lateinit var glide: RequestManager
 
     private val viewModel: EmployeeViewModel by viewModels()
 
@@ -63,7 +63,7 @@ class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
         }
 
         viewModel.employee.observe(viewLifecycleOwner) {
-            employeeAdapter.submitList(it)
+            employeeAdapter.submitList(it.data)
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

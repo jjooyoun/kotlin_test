@@ -3,12 +3,14 @@ package com.example.myapplication.ui
 import androidx.lifecycle.*
 import com.example.myapplication.data.EmployeeRepository
 import com.example.myapplication.data.PreferencesManager
-import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel @AssistedInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val employeeRepository: EmployeeRepository,
     private val preferencesManager: PreferencesManager
 ) : ViewModel() {
