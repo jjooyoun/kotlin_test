@@ -20,10 +20,14 @@ class EmployeeViewModel @Inject constructor(
 
     val employee = employeeRepository.observeAllEmployee().asLiveData()
 
-    val preferencesFlow = preferencesManager.preferencesFlow
+    fun deleteEmployee(employee: Employee) = viewModelScope.launch {
+        employeeRepository.deleteEmployee(employee)
+    }
 
     private val employeeEventChannel = Channel<EmployeeEvent> { }
     val employeeEvent = employeeEventChannel.receiveAsFlow()
+
+    val preferencesFlow = preferencesManager.preferencesFlow
 
     fun updateTest(test: String) = viewModelScope.launch {
         preferencesManager.updateTest(test)

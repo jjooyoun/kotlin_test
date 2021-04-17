@@ -17,7 +17,7 @@ class EmployeeLocalDataSource @Inject constructor(
     }
 
     suspend fun deleteEmployee(employee: Employee) {
-        TODO("Not yet implemented")
+        employeeDao.deleteEmployee(employee)
     }
 
     fun observeAllEmployee(): List<Employee> {

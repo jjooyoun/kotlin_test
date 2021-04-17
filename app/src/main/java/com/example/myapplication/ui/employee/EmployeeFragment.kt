@@ -57,13 +57,14 @@ class EmployeeFragment : BaseFragment(R.layout.fragment_employee),
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    employeeAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                    val item = employeeAdapter.employeeList[viewHolder.adapterPosition]
+                    viewModel.deleteEmployee(item)
                 }
             }).attachToRecyclerView(recyclerEmployee)
         }
 
         viewModel.employee.observe(viewLifecycleOwner) {
-            employeeAdapter.submitList(it.data)
+            employeeAdapter.employeeList = it.data!!
         }
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {

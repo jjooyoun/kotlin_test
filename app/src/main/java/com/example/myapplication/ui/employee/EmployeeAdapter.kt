@@ -2,18 +2,17 @@ package com.example.myapplication.ui.employee
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.example.myapplication.data.local.Employee
 import com.example.myapplication.databinding.ItemEmployeeBinding
-import javax.inject.Inject
 
 class EmployeeAdapter(
     private val glide: RequestManager,
     private val listener: OnItemClickListener
-) : ListAdapter<Employee, EmployeeAdapter.EmployeeViewHolder>(DiffCallback()) {
+) : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
         val binding =
@@ -22,8 +21,12 @@ class EmployeeAdapter(
     }
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
-        val currentItem = getItem(position)
+        val currentItem = employeeList[position]
         holder.bind(currentItem)
+    }
+
+    override fun getItemCount(): Int {
+        return employeeList.size
     }
 
     inner class EmployeeViewHolder(private val binding: ItemEmployeeBinding) :
@@ -34,11 +37,10 @@ class EmployeeAdapter(
                 root.setOnClickListener {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                        val employee = getItem(position)
+                        val employee = employeeList[position]
                         listener.onItemClick(employee)
                     }
                 }
-                // glide.load()
             }
         }
 
@@ -47,6 +49,7 @@ class EmployeeAdapter(
                 name.text = employee.full_name
                 email.text = employee.email_address
                 team.text = employee.team
+                glide.load(employee.photo_url_large).into(employeeImage)
             }
         }
     }
@@ -55,11 +58,19 @@ class EmployeeAdapter(
         fun onItemClick(employee: Employee)
     }
 
-    class DiffCallback : DiffUtil.ItemCallback<Employee>() {
-        override fun areItemsTheSame(oldItem: Employee, newItem: Employee) =
-            oldItem.id == newItem.id
+    private val diffCallback = object : DiffUtil.ItemCallback<Employee>() {
+        override fun areItemsTheSame(oldItem: Employee, newItem: Employee): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-        override fun areContentsTheSame(oldItem: Employee, newItem: Employee) =
-            oldItem == newItem
+        override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
+            return oldItem.hashCode() == newItem.hashCode()
+        }
     }
+
+    private val differ = AsyncListDiffer(this, diffCallback)
+
+    var employeeList: List<Employee>
+        get() = differ.currentList
+        set(value) = differ.submitList(value)
 }

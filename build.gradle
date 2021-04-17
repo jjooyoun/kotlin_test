@@ -2,7 +2,7 @@
 buildscript {
     ext.kotlinVersion = "1.4.21"
     ext.hiltVersion = "2.31.2-alpha"
-    ext.navigationVersion = "2.3.4"
+    ext.navigationVersion = "2.3.5"
     repositories {
         google()
         jcenter()
@@ -35,21 +35,22 @@ ext {
     targetSdkVersion = 30
     androidxAppcompatVersion = "1.2.0"
     androidxConstraintlayoutVersion = "2.0.4"
-    archLifecycleVersion = "2.2.0"
-    fragmentVersion = "1.3.0"
+    archLifecycleVersion = "2.3.1"
+    fragmentVersion = "1.3.2"
     androidxHiltVersion = "1.0.0-alpha03"
     retrofitVersion = "2.9.0"
     okhttpInterceptVersion = "4.10.0-RC1"
     roomVersion = "2.2.6"
     coroutinesVersion = "1.3.9"
-    dataStoreVersion = "1.0.0-alpha06"
+    dataStoreVersion = "1.0.0-alpha08"
     glideVersion = "4.11.0"
-    junitVersion = "4.13.1"
+    junitVersion = "4.13.2"
     junitExtensionVersion = "1.1.2"
     EspressoVersion ="3.3.0"
     googleTruthVersion = "1.0.1"
     coreTestingVersion = "2.1.0"
     kotilnCoroutineTestingVersion = "1.2.1"
-    kotilnFragmentTestingVersion = "1.3.1"
+    kotilnFragmentTestingVersion = "1.3.2"
     espressContribVersion = "3.3.0"
+    timberVersion = "1.5.1"
 }

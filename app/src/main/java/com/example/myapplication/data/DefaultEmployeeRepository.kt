@@ -19,7 +19,7 @@ class DefaultEmployeeRepository @Inject constructor(
     }
 
     override suspend fun deleteEmployee(employee: Employee) {
-        TODO("Not yet implemented")
+        employeeLocalDataSource.deleteEmployee(employee)
     }
 
     override fun observeAllEmployee(): Flow<Resource<List<Employee>>> {
@@ -46,6 +46,7 @@ class DefaultEmployeeRepository @Inject constructor(
                         employeeLocalDataSource.insertAllEmployee(employeeRoomList)
                     }
                 }
+                emit(Resource.success(employeeLocalDataSource.observeAllEmployee()))
             }
         }.flowOn(Dispatchers.IO)
     }
